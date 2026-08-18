@@ -10,7 +10,7 @@ struct DisplaySettingsAppApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(displayManager)
-                .frame(minWidth: 900, minHeight: 620)
+                .frame(minWidth: 700, idealWidth: 700, minHeight: 620)
                 .onOpenURL { url in
                     // Fired when the Finder extension launches us via
                     // the "displaysettings://" custom URL scheme.
@@ -34,6 +34,14 @@ struct DisplaySettingsAppApp: App {
         .windowResizability(.contentSize)
         .commands {
             CommandGroup(replacing: .newItem) {} // single-window utility app
+            CommandGroup(after: .appInfo) {
+                Button {
+                    FinderExtensionHelper.openExtensionPreferences()
+                } label: {
+                    Text("Enable Desktop Menu…")
+                }
+                .keyboardShortcut("O", modifiers: [.command, .option, .shift])
+            }
         }
     }
 
