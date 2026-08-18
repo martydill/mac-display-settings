@@ -139,31 +139,6 @@ struct ContentView: View {
             .frame(maxWidth: 380, alignment: .leading)
             .accessibilityLabel("Display scale and effective resolution")
             .disabled(manager.hasPendingChange || (display.isMirrored && !display.isMain))
-
-            HStack(spacing: 6) {
-                Text("Current:")
-                Text(display.effectiveResolutionLabel).fontWeight(.medium)
-                Text("•")
-                Text(display.physicalResolutionLabel)
-            }
-            .font(.caption)
-            .foregroundStyle(.secondary)
-
-            if let recommended = manager.recommendedResolution(for: display) {
-                Text("Recommended: \(recommended.label) (based on macOS's current logical display size)")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            } else {
-                Text("macOS does not expose a public recommended-mode flag; available modes are shown using public Core Graphics APIs.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-
-            if display.isMirrored && !display.isMain {
-                Text("Scale is controlled by the main display while displays are mirrored.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
         }
     }
 
@@ -198,16 +173,6 @@ struct ContentView: View {
             .frame(maxWidth: 240, alignment: .leading)
             .accessibilityLabel("Refresh rate")
             .disabled(manager.hasPendingChange || (display.isMirrored && !display.isMain))
-
-            Text("Current refresh rate: \(display.currentRefreshRateLabel)")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-
-            if display.refreshRateOptions.isEmpty {
-                Text("This display does not expose selectable refresh rates through the public display-mode API.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
         }
     }
 
@@ -239,14 +204,6 @@ struct ContentView: View {
             .frame(maxWidth: 300, alignment: .leading)
             .accessibilityLabel("Display mode")
             .disabled(manager.hasPendingChange || manager.displays.count < 2)
-
-            Text("Extend keeps displays independent. Duplicate mirrors the displays using the main display as the source.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-
-            Text("Turning individual displays completely off is not exposed by the public macOS display-configuration APIs, so this app does not emulate Windows' 'show only on 1/2' modes.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
         }
     }
 
