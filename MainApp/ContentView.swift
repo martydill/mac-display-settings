@@ -136,7 +136,7 @@ struct ContentView: View {
                 }
             }
             .labelsHidden()
-            .frame(maxWidth: 380)
+            .frame(maxWidth: 380, alignment: .leading)
             .accessibilityLabel("Display scale and effective resolution")
             .disabled(manager.hasPendingChange || (display.isMirrored && !display.isMain))
 
@@ -195,7 +195,7 @@ struct ContentView: View {
                 }
             }
             .labelsHidden()
-            .frame(maxWidth: 240)
+            .frame(maxWidth: 240, alignment: .leading)
             .accessibilityLabel("Refresh rate")
             .disabled(manager.hasPendingChange || (display.isMirrored && !display.isMain))
 
@@ -236,7 +236,7 @@ struct ContentView: View {
                 }
             }
             .labelsHidden()
-            .frame(maxWidth: 300)
+            .frame(maxWidth: 300, alignment: .leading)
             .accessibilityLabel("Display mode")
             .disabled(manager.hasPendingChange || manager.displays.count < 2)
 
