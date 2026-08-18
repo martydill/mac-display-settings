@@ -10,7 +10,7 @@ struct DisplaySettingsAppApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(displayManager)
-                .frame(minWidth: 900, minHeight: 620)
+                .frame(minWidth: 700, idealWidth: 700, minHeight: 620)
                 .onOpenURL { url in
                     // Fired when the Finder extension launches us via
                     // the "displaysettings://" custom URL scheme.

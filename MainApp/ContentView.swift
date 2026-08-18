@@ -204,10 +204,6 @@ struct ContentView: View {
                 GridRow { Text("Display ID").foregroundStyle(.secondary); Text(String(display.id)) }
             }
             .font(.callout)
-
-            Text("Display identification and hardware metadata are read through public Core Graphics APIs. macOS does not expose every Windows advanced-display field, such as a universal HDR capability flag, through this API set.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
         }
         .padding(.top, 4)
     }
