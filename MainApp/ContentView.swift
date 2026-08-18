@@ -5,10 +5,7 @@ struct ContentView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            HSplitView {
-                sidebar
-                detailPane
-            }
+            detailPane
             if let change = manager.pendingChange {
                 RevertConfirmationBar(change: change)
                     .environmentObject(manager)
@@ -26,24 +23,6 @@ struct ContentView: View {
 
     private var errorBinding: Binding<Bool> {
         Binding(get: { manager.lastError != nil }, set: { if !$0 { manager.lastError = nil } })
-    }
-
-    private var sidebar: some View {
-        List {
-            Label("Display", systemImage: "display")
-                .font(.headline)
-            Section {
-                Button {
-                    FinderExtensionHelper.openExtensionPreferences()
-                } label: {
-                    Label("Enable Desktop Menu…", systemImage: "cursorarrow.click.2")
-                }
-                .buttonStyle(.link)
-                .help("Opens System Settings so you can enable the Display Settings right-click menu item on your Desktop.")
-            }
-        }
-        .listStyle(.sidebar)
-        .frame(minWidth: 180, idealWidth: 200)
     }
 
     private var detailPane: some View {
@@ -69,7 +48,6 @@ struct ContentView: View {
             }
             .padding(28)
         }
-        .frame(minWidth: 650)
     }
 
     private var emptyState: some View {

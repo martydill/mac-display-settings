@@ -34,6 +34,14 @@ struct DisplaySettingsAppApp: App {
         .windowResizability(.contentSize)
         .commands {
             CommandGroup(replacing: .newItem) {} // single-window utility app
+            CommandGroup(after: .appInfo) {
+                Button {
+                    FinderExtensionHelper.openExtensionPreferences()
+                } label: {
+                    Text("Enable Desktop Menu…")
+                }
+                .keyboardShortcut("O", modifiers: [.command, .option, .shift])
+            }
         }
     }
 
